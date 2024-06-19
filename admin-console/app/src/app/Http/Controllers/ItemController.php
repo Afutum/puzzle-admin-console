@@ -44,7 +44,7 @@ class ItemController extends Controller
         // sessionにloginが含まれていたら
         if ($request->session()->exists('login')) {
             // データを渡してviewを表示
-            return view('accounts/items', ['items' => $items]);
+            return view('items/index', ['items' => $items]);
         } else {
             // 含まれていなかったらログイン画面を表示
             return redirect('/');

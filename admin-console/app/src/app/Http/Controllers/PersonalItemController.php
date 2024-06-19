@@ -48,7 +48,7 @@ class PersonalItemController extends Controller
         ];
 
         if ($request->session()->exists('login')) {
-            return view('accounts/personalItems', ['items' => $personalItem]);
+            return view('PersonalItems/index', ['items' => $personalItem]);
         } else {
             return redirect('/');
         }

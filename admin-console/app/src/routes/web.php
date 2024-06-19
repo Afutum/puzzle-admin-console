@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PersonalItemController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AccountController::class, 'login']);
+Route::get('/', [AuthController::class, 'login'])->name('login');
 
-Route::post('accounts/dologin', [AccountController::class, 'dologin']);
+Route::post('auths/dologin', [AuthController::class, 'dologin']);
 
-Route::get('accounts/dologout', [AccountController::class, 'dologout']);
+Route::get('auths/dologout', [AuthController::class, 'dologout'])->name('dologout');
 
 //Route::post('accounts/player', [PlayerController::class, 'player']);
 

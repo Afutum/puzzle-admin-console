@@ -1,8 +1,9 @@
 <html lang="ja">
 <head>
-    <title>ユーザー一覧</title>
+    <title>プレイヤー一覧</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
 <body>
 <div class="container">
     <header
@@ -16,31 +17,34 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="index" class="nav-link px-2 link-secondary">ユーザー一覧</a></li>
-            <li><a href="showPlayer" class="nav-link px-2">プレイヤー一覧</a></li>
-            <li><a href="showItem" class="nav-link px-2">アイテム一覧</a></li>
-            <li><a href="showPersonalItem" class="nav-link px-2">所持アイテム一覧</a></li>
+            <li><a href="/" class="nav-link px-2">aaaa</a></li>
+            <li><a href="{{url('accounts/showPlayer')}}" class="nav-link px-2 link-secondary">プレイヤー一覧</a></li>
+            <li><a href="{{url('accounts/showItem')}}" class="nav-link px-2">アイテム一覧</a></li>
+            <li><a href="{{url('accounts/showPersonalItem')}}" class="nav-link px-2">所持アイテム一覧</a>
         </ul>
-
         <div class="col-md-3 text-end">
             <button type="button" class="btn btn-outline-danger me-2"
                     onclick="location.href='{{url("/auths/dologout")}}'">ログアウト
             </button>
         </div>
+
     </header>
 </div>
-<h1>■ユーザー一覧</h1>
+<!--<form method="post" action="{{url('accounts/player')}}">
+    <input type="text" name="userName" id="userName">
+    <input type="button" class="btn btn-primary" id="button" value="検索">
+    <input type="hidden" name="action" value="searchUser">
+</form>-->
+<button onclick="location.href='./?action=player'">一覧に戻す</button>
+<h3>■プレイヤー一覧■</h3>
 <table class="table table-hover" id="table">
-    <tr>
-        <th>名前</th>
-        <th>パスワード</th>
-    </tr>
-    @foreach($accounts as $account)
+    @foreach($players as $player)
         <tr>
-            <td>{{$account['name']}}</td>
-            <td>{{$account['password']}}</td>
+            <td>{{$player['id']}}</td>
+            <td>{{$player['name']}}</td>
+            <td>{{$player['level']}}</td>
+            <td>{{$player['exp']}}</td>
+            <td>{{$player['life']}}</td>
         </tr>
     @endforeach
 </table>
-</body>
-</html>

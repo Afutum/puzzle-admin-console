@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
@@ -12,16 +13,10 @@ class AccountController extends Controller
     // アカウント一覧を表示する
     public function index(Request $request)
     {
-        $data = [
-            [
-                'name' => 'jobi',
-                'pass' => 'jobi',
-            ],
-            [
-                'name' => 'miyake',
-                'pass' => '$ss$uufeip',
-            ]
-        ];
+        $accounts =
+            Account::All();
+
+        return view('accounts/index', ['accounts' => $accounts]);
 
         //dd($request->account_id);
 
@@ -45,44 +40,16 @@ class AccountController extends Controller
             var_dump($request['aaa']);
         }*/
 
-        $title = 'アカウント一覧';
+        //$title = 'アカウント一覧';
 
         // カンマ区切りで、複数のパラメータを渡せる
-        return view('accounts/index', ['title' => $title, 'accounts' => $data]);
+        //return view('accounts/index', ['title' => $title, 'accounts' => $data]);
     }
-    
+
     public function login(Request $request)
     {
+
+
         return view('accounts/login');
-    }
-
-
-    //******************
-    // ログイン処理
-    //******************
-    public function dologin(Request $request)
-    {
-        if ($request['name'] === 'jobi' && $request['pass'] === 'jobi') {
-            // 名前とパスが一致している場合
-            // セッションに指定のキーで値を保存
-            $request->session()->put('login', true);
-
-            return redirect('accounts/index');
-        } else {
-            // 一致してない場合
-            return redirect('/')->with(['errors' => ['ユーザー名・パスワードが間違っています。']]);
-        }
-    }
-
-    //********************
-    // ログアウト処理
-    //********************
-    public function dologout(Request $request)
-    {
-        // セッションから指定したデータを削除
-        $request->session()->forget('login');
-
-        // ログイン画面にリダイレクトする
-        return redirect('/');
     }
 }

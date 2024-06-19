@@ -5,7 +5,7 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-<form method="post" action="{{url('accounts/dologin')}}">
+<form method="post" action="{{url('auths/dologin')}}">
     @csrf
 
     <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
@@ -23,20 +23,22 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control rounded-3" id="floatingPassword"
-                                   placeholder="Password" name="pass">
+                                   placeholder="Password" name="password">
                             <label for="floatingPassword">パスワード</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">ログイン</button>
                         <input type="hidden" name="action" value="doLogin">
-
-                        @if(!empty($errors))
+                    </form>
+                    @if(!empty($errors))
+                            <?php \Barryvdh\Debugbar\Facades\Debugbar::info($errors); ?>
+                        @if($errors->any())
                             <ul>
-                                @foreach($errors as $error)
-                                    <li class="text-danger fw-bold">{{$error}}</li>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
                                 @endforeach
                             </ul>
                         @endif
-                    </form>
+                    @endif
                 </div>
             </div>
         </div>

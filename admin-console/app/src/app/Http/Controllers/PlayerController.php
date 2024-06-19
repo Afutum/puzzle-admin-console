@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Player;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class PlayerController extends Controller
     public function showPlayer(Request $request)
     {
         // プレイヤーのデータを連想配列で登録
-        $players = [
+        /*$players = [
             [
                 'id' => 1,
                 'name' => 'jobi',
@@ -34,14 +35,16 @@ class PlayerController extends Controller
                 'exp' => 63,
                 'life' => 5,
             ]
-        ];
+        ];*/
+
+        $players = Player::all();
 
         DebugBar::error('エラーだよ');
 
         // sessionにloginが含まれていたら
         if ($request->session()->exists('login')) {
             // プレイヤーの情報を渡してviewを表示
-            return view('accounts/players', ['players' => $players]);
+            return view('players/index', ['players' => $players]);
         } else {
             // 含まれていなかったらログイン画面を表示
             return redirect('/');
