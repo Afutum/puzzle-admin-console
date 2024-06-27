@@ -14,49 +14,49 @@ class PersonalItemsTableSeeder extends Seeder
     public function run(): void
     {
         PersonalItem::create([
-            'Player_id' => 1,
+            'User_id' => 1,
             'Item_id' => 1,
             'personal_item' => 15,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 1,
+            'User_id' => 1,
             'Item_id' => 2,
             'personal_item' => 4,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 2,
+            'User_id' => 2,
             'Item_id' => 1,
             'personal_item' => 4,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 2,
+            'User_id' => 2,
             'Item_id' => 2,
             'personal_item' => 5,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 2,
+            'User_id' => 2,
             'Item_id' => 3,
             'personal_item' => 1,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 3,
+            'User_id' => 3,
             'Item_id' => 1,
             'personal_item' => 10,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 3,
+            'User_id' => 3,
             'Item_id' => 2,
             'personal_item' => 4,
         ]);
 
         PersonalItem::create([
-            'Player_id' => 3,
+            'User_id' => 3,
             'Item_id' => 4,
             'personal_item' => 2,
         ]);

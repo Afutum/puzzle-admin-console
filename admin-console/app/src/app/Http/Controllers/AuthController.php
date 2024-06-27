@@ -10,11 +10,14 @@ use PHPUnit\Framework\Constraint\Count;
 
 class AuthController extends Controller
 {
+    // ログイン画面表示
     public function login(Request $request)
     {
-        return view('accounts/login');
+        // errorかnullを返す
+        return view('accounts/login', ['error' => $request['error'] ?? null]);
     }
 
+    // ログイン処理
     public function dologin(Request $request)
     {
         $validated = $request->validate([
@@ -22,28 +25,28 @@ class AuthController extends Controller
             'password' => ['required']
         ]);
 
+        // 入力された名前を取得
         $accounts = Account::where('name', '=', $request['name'])->get();
         if ($accounts->count() > 0) {
-            Debugbar::info($request['password']);
-            Debugbar::info($accounts[0]['password']);
+            // ハッシュ化されたパスワードと入力されたパスワードがあっているか
             if (Hash::check($request['password'], $accounts[0]['password'])) {
                 // 名前とパスが一致している場合
                 // セッションに指定のキーで値を保存
                 $request->session()->put('login', true);
 
-                return redirect('accounts/index');
+                // ユーザー一覧にリダイレクトする
+                return redirect()->route('accounts.index');
             }
         }
 
-        return redirect()->route('login', ['error' => 'invalid']);
+        return redirect()->route('RegAccounts/index', ['error' => 'invalid']);
     }
 
+    // ログアウト処理
     public function dologout(Request $request)
     {
-        Debugbar::info('jijiijijiji');
-
         // セッションから指定したデータを削除
-        $request->session()->flush();
+        $request->session()->forget('login');
 
         // ログイン画面にリダイレクトする
         return view('accounts/login');

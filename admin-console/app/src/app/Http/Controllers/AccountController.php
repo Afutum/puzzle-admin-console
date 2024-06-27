@@ -6,6 +6,7 @@ use App\Models\Account;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\returnArgument;
 
 class AccountController extends Controller
@@ -13,10 +14,12 @@ class AccountController extends Controller
     // アカウント一覧を表示する
     public function index(Request $request)
     {
+        // テーブルからアカウント情報をすべて取得
         $accounts =
             Account::All();
 
-        return view('accounts/index', ['accounts' => $accounts]);
+        // アカウント一覧を表示
+        return view('accounts.index', ['accounts' => $accounts]);
 
         //dd($request->account_id);
 
@@ -46,10 +49,95 @@ class AccountController extends Controller
         //return view('accounts/index', ['title' => $title, 'accounts' => $data]);
     }
 
-    public function login(Request $request)
+    // アカウント作成処理
+    public function store(Request $request)
     {
+        // パスワードが一致しているかどうか
+        $request->validate([
+            'password' => ['required', 'confirmed']
+        ]);
 
+        // 同じ名前があるかどうか
+        $isAccountExist = Account::where('name', '=', $request['name'])->exists();
 
-        return view('accounts/login');
+        // 同じ名前がなかった場合
+        if (!$isAccountExist) {
+            // レコードを追加
+            Account::create(['name' => $request['name'], 'password' => Hash::make($request['password'])]);
+
+            // 成功時用
+            return redirect()->route('accounts.create',
+                ['success' => $request['name'] . 'を登録しました']);
+        }
+
+        // 失敗時用
+        return redirect()->route('accounts.create', ['error' => 'invalid']);
+    }
+
+    // アカウント作成画面表示処理
+    public function create(Request $request)
+    {
+        // nullか$requestの中身を返す
+        return view('RegAccounts/index',
+            ['success' => $request['success'] ?? null, 'error' => $request['error'] ?? null]);
+    }
+
+    // 削除処理
+    public function destroy(Request $request)
+    {
+        // idを取得してそのidの情報を削除する
+        $accounts = Account::findOrFail($request['id']);
+        $accounts->delete();
+
+        // 現在のデータを取得
+        $accounts =
+            Account::All();
+
+        // アカウント一覧を表示
+        return view('accounts.index', ['accounts' => $accounts]);
+    }
+
+    // 削除確認画面表示処理
+    public function confDestroy(Request $request)
+    {
+        $accounts = Account::findOrFail($request['id']);
+
+        // 削除確認画面を表示
+        return view('destroy.index', ['account' => $accounts]);
+    }
+
+    // 削除完了画面表示処理
+    public function successDestroy(Request $request)
+    {
+        $accounts = Account::findOrFail($request['id']);
+
+        // 削除完了画面を表示
+        return view('destroy.successDestroy', ['account' => $accounts]);
+    }
+
+    // パスワード更新処理
+    public function passUpdate(Request $request)
+    {
+        // パスワードが一致しているかどうか
+        $request->validate([
+            'password' => ['required', 'confirmed']
+        ]);
+
+        // idを取得してそのidの情報を更新する
+        $accounts = Account::findOrFail($request['id']);
+        $accounts['password'] = Hash::make($request['password']);
+        $accounts->save();
+
+        // アカウント一覧を表示
+        return view('updateAccounts.successUpdate', ['account' => $accounts]);
+    }
+
+    // 情報更新入力画面表示処理
+    public function disPassUpdate(Request $request)
+    {
+        $accounts = Account::findOrFail($request['id']);
+
+        // 更新入力画面を表示
+        return view('updateAccounts.index', ['account' => $accounts]);
     }
 }

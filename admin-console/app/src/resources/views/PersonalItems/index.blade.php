@@ -17,10 +17,11 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" class="nav-link px-2">ユーザー一覧</a></li>
-            <li><a href="{{url('accounts/showPlayer')}}" class="nav-link px-2">プレイヤー一覧</a></li>
-            <li><a href="{{url('accounts/showItem')}}" class="nav-link px-2">アイテム一覧</a></li>
-            <li><a href="{{url('accounts/showPersonalItem')}}" class="nav-link px-2 link-secondary">所持アイテム一覧</a>
+            <li><a href="{{route('accounts.index')}}" class="nav-link px-2">ユーザー一覧</a></li>
+            <li><a href="{{route('accounts.create')}}" class="nav-link px-2">ユーザー登録</a></li>
+            <li><a href="showPlayer" class="nav-link px-2">プレイヤー一覧</a></li>
+            <li><a href="showItem" class="nav-link px-2">アイテム一覧</a></li>
+            <li><a href="showPersonalItem" class="nav-link px-2 link-secondary">所持アイテム一覧</a>
             </li>
         </ul>
 
@@ -42,7 +43,7 @@
     @foreach($items as $item)
         <tr>
             <td>{{$item['id']}}</td>
-            <td>{{$item['player_name']}}</td>
+            <td>{{$item['user_name']}}</td>
             <td>{{$item['item_name']}}</td>
             <td>{{$item['personal_item']}}</td>
         </tr>
