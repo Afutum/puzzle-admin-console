@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -11,8 +12,11 @@ class ItemController extends Controller
     {
         // sessionにloginが含まれていたら
         if ($request->session()->exists('login')) {
+
+            $items = Item::all();
+
             // データを渡してviewを表示
-            return view('items/index');
+            return view('items/index', ['items' => $items]);
         } else {
             // 含まれていなかったらログイン画面を表示
             return redirect('/');

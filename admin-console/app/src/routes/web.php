@@ -20,13 +20,14 @@ Route::post('auths/dologin', [AuthController::class, 'dologin']);
 Route::get('auths/dologout', [AuthController::class, 'dologout'])->name('dologout');
 
 // プレイヤー一覧表示処理
-Route::get('accounts/showPlayer', [UserController::class, 'showPlayer']);
+Route::get('accounts/showPlayer', [UserController::class, 'showPlayer'])->name('user.showPlayer');
 
 // アイテム一覧表示処理
-Route::get('accounts/showItem', [ItemController::class, 'showItem']);
+Route::get('accounts/showItem', [ItemController::class, 'showItem'])->name('item.showItem');
 
 // アイテム所持数一覧表示処理
-Route::get('accounts/showPersonalItem', [PersonalItemController::class, 'showPersonalItem']);
+Route::get('accounts/showPersonalItem',
+    [PersonalItemController::class, 'showPersonalItem'])->name('personalItem.showPersonalItem');
 
 // アカウント登録画面
 /*Route::get('accounts/create', [AccountController::class, 'create'])->name('accounts.create');
