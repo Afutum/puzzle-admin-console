@@ -19,8 +19,11 @@ class AccountController extends Controller
 
         $accounts = Account::paginate(3);
 
+        // ログインしている名前をセッションから取得
+        $loginName = $request->session()->get('name');
+
         // アカウント一覧を表示
-        return view('accounts.index', ['accounts' => $accounts]);
+        return view('accounts.index', ['accounts' => $accounts, 'error' => null, 'loginName' => $loginName]);
 
         //dd($request->account_id);
 
@@ -94,12 +97,19 @@ class AccountController extends Controller
         $accounts = Account::paginate(3);
 
         // アカウント一覧を表示
-        return view('accounts.index', ['accounts' => $accounts]);
+        return view('accounts.index', ['accounts' => $accounts, 'error' => null]);
     }
 
     // 削除確認画面表示処理
     public function confDestroy(Request $request)
     {
+        $accounts = Account::all();
+        if (count($accounts) <= 1) {
+            $error = 'アカウントは最低1つ必要です';
+            $accounts = Account::paginate(3);
+            return view('accounts.index', ['accounts' => $accounts, 'error' => $error]);
+        }
+
         $accounts = Account::findOrFail($request['id']);
 
         // 削除確認画面を表示
@@ -138,7 +148,7 @@ class AccountController extends Controller
         $accounts = Account::findOrFail($request['id']);
 
         // 更新入力画面を表示
-        return view('updateAccounts.index', ['account' => $accounts]);
+        return view('updateAccounts.index', ['account' => $accounts, 'error' => null]);
     }
 
     public function deleteCansel(Request $request)
@@ -146,6 +156,6 @@ class AccountController extends Controller
         $accounts = Account::paginate(3);
 
         // アカウント一覧を表示
-        return view('accounts.index', ['accounts' => $accounts]);
+        return view('accounts.index', ['accounts' => $accounts, 'error' => null]);
     }
 }

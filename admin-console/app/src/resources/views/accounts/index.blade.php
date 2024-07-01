@@ -22,11 +22,13 @@
                 <td>{{$account['name']}}</td>
                 <td>{{$account['password']}}</td>
                 <td>
-                    <form method="post" action="{{route('accounts.confDestroy')}}">
-                        @csrf
-                        <button type="submit">削除</button>
-                        <input type="hidden" name="id" value={{$account['id']}}>
-                    </form>
+                    @if($account['name'] != $loginName)
+                        <form method="post" action="{{route('accounts.confDestroy')}}">
+                            @csrf
+                            <button type="submit">削除</button>
+                            <input type="hidden" name="id" value={{$account['id']}}>
+                        </form>
+                    @endif
                     <form method="post" action="{{route('accounts.disPassUpdate')}}">
                         @csrf
                         <button type="submit">更新</button>
@@ -35,5 +37,10 @@
                 </td>
             </tr>
         @endforeach
+        @if(!empty($error))
+            <ul>
+                <li class="text-danger">{{$error}}</li>
+            </ul>
+        @endif
     </table>
 @endsection

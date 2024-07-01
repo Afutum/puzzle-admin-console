@@ -28,6 +28,8 @@ class AuthController extends Controller
         // 入力された名前を取得
         $accounts = Account::where('name', '=', $request['name'])->get();
         if ($accounts->count() > 0) {
+            // ログインした名前をセッションに保存
+            $request->session()->put('name', $request['name']);
             // ハッシュ化されたパスワードと入力されたパスワードがあっているか
             if (Hash::check($request['password'], $accounts[0]['password'])) {
                 // 名前とパスが一致している場合
@@ -39,7 +41,7 @@ class AuthController extends Controller
             }
         }
 
-        return redirect()->route('RegAccounts/index', ['error' => 'invalid']);
+        return redirect()->route('login', ['error' => 'invalid']);
     }
 
     // ログアウト処理
@@ -47,6 +49,7 @@ class AuthController extends Controller
     {
         // セッションから指定したデータを削除
         $request->session()->forget('login');
+        $request->session()->forget('name');
 
         // ログイン画面にリダイレクトする
         return view('accounts/login');
