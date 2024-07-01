@@ -15,8 +15,9 @@ class AccountController extends Controller
     public function index(Request $request)
     {
         // テーブルからアカウント情報をすべて取得
-        $accounts =
-            Account::All();
+        //$accounts = Account::All();
+
+        $accounts = Account::paginate(3);
 
         // アカウント一覧を表示
         return view('accounts.index', ['accounts' => $accounts]);
@@ -54,6 +55,7 @@ class AccountController extends Controller
     {
         // パスワードが一致しているかどうか
         $request->validate([
+            'name' => ['required', 'min:4', 'max:20'],
             'password' => ['required', 'confirmed']
         ]);
 
@@ -89,9 +91,7 @@ class AccountController extends Controller
         $accounts = Account::findOrFail($request['id']);
         $accounts->delete();
 
-        // 現在のデータを取得
-        $accounts =
-            Account::All();
+        $accounts = Account::paginate(3);
 
         // アカウント一覧を表示
         return view('accounts.index', ['accounts' => $accounts]);
@@ -139,5 +139,13 @@ class AccountController extends Controller
 
         // 更新入力画面を表示
         return view('updateAccounts.index', ['account' => $accounts]);
+    }
+
+    public function deleteCansel(Request $request)
+    {
+        $accounts = Account::paginate(3);
+
+        // アカウント一覧を表示
+        return view('accounts.index', ['accounts' => $accounts]);
     }
 }
