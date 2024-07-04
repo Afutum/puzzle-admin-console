@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','ユーザー一覧')
+@section('title','フォローリスト')
 @section('body')
     @section('userList','nav-link px-2 ')
     @section('userLeg','nav-link px-2')
@@ -14,25 +14,21 @@
     <input type="hidden" name="action" value="searchUser">
 </form>-->
     <!--<button onclick="location.href='./?action=player'">一覧に戻す</button>-->
-    <h3>■ユーザー一覧■</h3>
-    @if(!empty($players))
-        {{$players->onEachSide(1)->links()}}
-    @endif
+    <h3>■フォローリスト■</h3>
+
     <table class="table table-hover" id="table">
         <tr>
             <th>ID</th>
             <th>名前</th>
             <th>レベル</th>
-            <th>経験値</th>
-            <th>ライフ</th>
+            <th>フォローした日</th>
         </tr>
-        @foreach($players as $player)
+        @foreach($follows as $follow)
             <tr>
-                <td>{{$player['id']}}</td>
-                <td>{{$player['name']}}</td>
-                <td>{{$player['level']}}</td>
-                <td>{{$player['xp']}}</td>
-                <td>{{$player['life']}}</td>
+                <td>{{$follow['id']}}</td>
+                <td>{{$follow['user_name']}}</td>
+                <td>{{$follow['user_level']}}</td>
+                <td>{{$follow['created_at']}}</td>
             </tr>
         @endforeach
     </table>

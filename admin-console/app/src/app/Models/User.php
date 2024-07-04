@@ -9,6 +9,11 @@ class User extends Model
 {
     use HasFactory;
 
+    public function avatars()
+    {
+        return $this->hasMany(User::class);
+    }
+
     protected $guarded = [
         'id',
     ];

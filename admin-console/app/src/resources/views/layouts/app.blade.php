@@ -21,8 +21,9 @@
             <li><a href="{{route('accounts.create')}}" class="nav-link px-2">アカウント登録</a></li>
             <li><a href="{{route('disCreateMail')}}" class="nav-link px-2">メール送信</a></li>
             <li><a href="{{route('mail.index')}}" class="nav-link px-2">メール一覧</a></li>
-            <li><a href="{{route('showUserMail')}}" class="nav-link px-2">ユーザーメール一覧</a></li>
-            <li><a href="{{route('user.showPlayer')}}" class="nav-link px-2">プレイヤー一覧</a></li>
+            <li><a href="{{route('showUserMail')}}" class="nav-link px-2">ユーザー受信メール一覧</a></li>
+            <li><a href="{{route('user.showPlayer')}}" class="nav-link px-2">ユーザー一覧</a></li>
+            <li><a href="{{route('Follow.index')}}" class="nav-link px-2">フォロー一覧</a></li>
             <li><a href="{{route('item.showItem')}}" class="nav-link px-2">アイテム一覧</a></li>
             <li><a href="{{route('personalItem.showPersonalItem')}}" class="nav-link px-2">所持アイテム一覧</a>
             </li>

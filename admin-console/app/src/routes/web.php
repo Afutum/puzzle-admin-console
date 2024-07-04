@@ -10,6 +10,7 @@ use App\Http\Controllers\RegAccountController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\NoCacheMiddleware;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\FriendController;
 
 Route::middleware(NoCacheMiddleware::class)->group(function () {
     // ログイン画面
@@ -45,6 +46,8 @@ Route::middleware(NoCacheMiddleware::class)->group(function () {
     Route::post('Mail/createMail', [MailController::class, 'createMail'])->name('createMail');
 
     Route::get('Mail/disCreateMail', [MailController::class, 'disCreateMail'])->name('disCreateMail');
+
+    Route::get('Follow/index', [FriendController::class, 'index'])->name('Follow.index');
 
 // ユーザー一覧
     Route::get('accounts/index/{account_id?}', [AccountController::class, 'index'])->name('accounts.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\User;
 use App\Models\userMail;
 use Barryvdh\Debugbar\Facades\Debugbar;
@@ -14,7 +15,9 @@ class UserController extends Controller
     public function showPlayer(Request $request)
     {
         // テーブルからプレイヤー情報をすべて取得
-        $players = User::all();
+        //$players = User::all();
+
+        $players = User::paginate(10);
 
         //DebugBar::error('エラーだよ');
 
@@ -28,6 +31,7 @@ class UserController extends Controller
         }
     }
 
+    // ユーザーメール一覧を表示
     public function showUserMail()
     {
         $userMails = userMail::select([
