@@ -3,6 +3,7 @@
 @section('body')
     @section('userList','nav-link px-2 ')
     @section('userLeg','nav-link px-2')
+    @section('mail','nav-link px-2')
     @section('player','nav-link px-2  link-secondary')
     @section('item','nav-link px-2')
     @section('personalItem','nav-link px-2')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\userMail;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
@@ -25,5 +26,21 @@ class UserController extends Controller
             // 含まれていなかったらログイン画面を表示
             return redirect('/');
         }
+    }
+
+    public function showUserMail()
+    {
+        $userMails = userMail::select([
+            'user_mails.id',
+            'mail_id',
+            'users.name as user_name',
+            'is_received',
+            'user_mails.created_at',
+            'user_mails.updated_at'
+        ])
+            ->join('users', 'users.id', '=', 'user_mails.user_id')
+            ->get();
+
+        return view('users.userMail', ['userMails' => $userMails]);
     }
 }

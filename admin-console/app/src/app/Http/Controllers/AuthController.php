@@ -49,7 +49,7 @@ class AuthController extends Controller
     {
         // セッションから指定したデータを削除
         $request->session()->forget('login');
-        $request->session()->forget('name');
+        $request->session()->forget('loginName');
 
         // ログイン画面にリダイレクトする
         return view('accounts/login');

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegAccountController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\NoCacheMiddleware;
+use App\Http\Controllers\MailController;
 
 Route::middleware(NoCacheMiddleware::class)->group(function () {
     // ログイン画面
@@ -36,6 +37,14 @@ Route::middleware(NoCacheMiddleware::class)->group(function () {
 // 削除完了画面表示処理
     Route::post('accounts/successDestroy',
         [AccountController::class, 'successDestroy'])->name('accounts.successDestroy');
+
+    Route::get('Mail/index', [MailController::class, 'index'])->name('mail.index');
+
+    Route::get('User/showUserMail', [UserController::class, 'showUserMail'])->name('showUserMail');
+
+    Route::post('Mail/createMail', [MailController::class, 'createMail'])->name('createMail');
+
+    Route::get('Mail/disCreateMail', [MailController::class, 'disCreateMail'])->name('disCreateMail');
 
 // ユーザー一覧
     Route::get('accounts/index/{account_id?}', [AccountController::class, 'index'])->name('accounts.index');

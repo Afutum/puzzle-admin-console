@@ -1,12 +1,6 @@
 @extends('layouts.app')
 @section('title','アカウント一覧')
 @section('body')
-    @section('userList','nav-link px-2 link-secondary')
-    @section('userLeg','nav-link px-2')
-    @section('player','nav-link px-2')
-    @section('item','nav-link px-2')
-    @section('personalItem','nav-link px-2')
-
     <h1>■アカウント一覧</h1>
     @if(!empty($accounts))
         {{$accounts->onEachSide(1)->links()}}

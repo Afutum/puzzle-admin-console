@@ -18,7 +18,6 @@ class AccountController extends Controller
         //$accounts = Account::All();
 
         $accounts = Account::paginate(3);
-
         // ログインしている名前をセッションから取得
         $loginName = $request->session()->get('name');
 
