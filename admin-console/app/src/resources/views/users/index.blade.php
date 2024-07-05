@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','ユーザー一覧')
+@section('title','プレイヤー一覧')
 @section('body')
     @section('userList','nav-link px-2 ')
     @section('userLeg','nav-link px-2')
@@ -14,7 +14,7 @@
     <input type="hidden" name="action" value="searchUser">
 </form>-->
     <!--<button onclick="location.href='./?action=player'">一覧に戻す</button>-->
-    <h3>■ユーザー一覧■</h3>
+    <h3>■ユーザー 一覧■</h3>
     @if(!empty($players))
         {{$players->onEachSide(1)->links()}}
     @endif

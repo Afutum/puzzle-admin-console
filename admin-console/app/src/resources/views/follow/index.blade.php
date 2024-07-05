@@ -20,14 +20,14 @@
         <tr>
             <th>ID</th>
             <th>名前</th>
-            <th>レベル</th>
+            <th>フォローユーザー</th>
             <th>フォローした日</th>
         </tr>
         @foreach($follows as $follow)
             <tr>
                 <td>{{$follow['id']}}</td>
-                <td>{{$follow['user_name']}}</td>
-                <td>{{$follow['user_level']}}</td>
+                <td>{{$follow->user->name}}</td>
+                <td>{{$follow->followUser->name}}</td>
                 <td>{{$follow['created_at']}}</td>
             </tr>
         @endforeach

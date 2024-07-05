@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Mail;
+use App\Models\User;
 use App\Models\userMail;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Faker\Core\Number;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\select;
@@ -18,11 +20,10 @@ class MailController extends Controller
             'mails.id',
             'text',
             'items.item_name as item_name',
-            'item_cnt',
             'mails.updated_at',
             'mails.created_at'
         ])
-            ->join('items', 'items.id', '=', 'mails.item_id')
+            ->Leftjoin('items', 'items.id', '=', 'mails.item_id')
             ->get();
 
         return view('mails.index', ['mails' => $mail]);
@@ -31,6 +32,10 @@ class MailController extends Controller
     // 送信処理
     public function createMail(Request $request)
     {
+        if (!User::where('id', '=', $request['id'])->exists()) {
+            return redirect()->route('disCreateMail');
+        }
+
         Mail::create([
             'text' => $request['text'],
             'item_id' => $request['item_id'],

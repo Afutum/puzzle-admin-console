@@ -9,14 +9,7 @@ class FriendController extends Controller
 {
     public function index()
     {
-        $follows = followList::select([
-            'follow_lists.id',
-            'users.name as user_name',
-            'users.level as user_level',
-            'follow_lists.created_at',
-        ])
-            ->join('users', 'users.id', '=', 'follow_lists.follow_user_id')
-            ->get();
+        $follows = followList::all();
 
         return view('follow/index', ['follows' => $follows]);
     }
