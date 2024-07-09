@@ -1,0 +1,21 @@
+### ユーザー情報取得
+GET http://localhost:8000/api/users/1
+Accept: application/json
+
+### ユーザーリスト情報取得
+GET http://localhost:8000/api/users?min_level=3&max_level=9
+Accept: application/json
+
+### アイテムリスト情報取得
+GET http://localhost:8000/api/items
+Accept: application/json
+
+### メールリスト情報取得
+GET http://localhost:8000/api/mails
+Accept: application/json
+
+### ユーザーアイテム情報取得
+GET http://localhost:8000/api/users/items/1
+Accept: application/json
+
+### Acceptヘッダーは、クライアントがJSONを受け付ける設定
