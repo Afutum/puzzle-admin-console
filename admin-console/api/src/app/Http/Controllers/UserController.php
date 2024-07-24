@@ -6,6 +6,7 @@ use App\Http\Resources\UserItemResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -42,5 +43,20 @@ class UserController extends Controller
         $user = User::findOrFail($request->user_id);
 
         return response()->json(UserItemResource::collection($user->items));
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'level' => ['required', 'int', 'min:1'],
+            'life' => ['required', 'int', 'min:0']
+        ]);
+
+        $user = User::findOrFail($request->user_id);
+        $user->level = $request->level;
+        $user->life = $request->life;
+        $user->save();
+
+        return response()->json();
     }
 }

@@ -10,7 +10,6 @@ class FriendController extends Controller
     public function index()
     {
         $follows = followList::all();
-
         return view('follow/index', ['follows' => $follows]);
     }
 

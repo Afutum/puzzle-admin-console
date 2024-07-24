@@ -6,6 +6,17 @@ Accept: application/json
 GET http://localhost:8000/api/users?min_level=3&max_level=9
 Accept: application/json
 
+###ユーザー更新
+POST http://localhost:8000/api/users/update
+Content-Type:application/json
+Accept: application/json
+
+{
+    "user_id": 1,
+    "level": 11,
+    "life": 2
+}
+
 ### アイテムリスト情報取得
 GET http://localhost:8000/api/items
 Accept: application/json
