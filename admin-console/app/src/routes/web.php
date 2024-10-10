@@ -13,7 +13,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\FriendController;
 
 Route::middleware(NoCacheMiddleware::class)->group(function () {
-    // ログイン画面
+// ログイン画面
     Route::get('/', [AuthController::class, 'login'])->name('login');
 
 // ログイン処理

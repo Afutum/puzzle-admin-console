@@ -15,23 +15,18 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'name' => 'jobi',
-            'level' => 10,
-            'xp' => 100,
-            'life' => 3
+            'raid_points' => 300,
+
         ]);
 
         User::create([
             'name' => 'chiba',
-            'level' => 33,
-            'xp' => 3830,
-            'life' => 0
+            'raid_points' => 50,
         ]);
 
         User::create([
             'name' => 'hoge',
-            'level' => 8,
-            'xp' => 63,
-            'life' => 5
+            'raid_points' => 0
         ]);
 
         User::factory(100)->create();

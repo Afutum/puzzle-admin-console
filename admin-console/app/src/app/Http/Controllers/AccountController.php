@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
@@ -62,20 +63,31 @@ class AccountController extends Controller
         ]);
 
         // 同じ名前があるかどうか
-        $isAccountExist = Account::where('name', '=', $request['name'])->exists();
+        //$isAccountExist = Account::where('name', '=', $request['name'])->exists();
 
         // 同じ名前がなかった場合
-        if (!$isAccountExist) {
+        /*if (!$isAccountExist) {
             // レコードを追加
             Account::create(['name' => $request['name'], 'password' => Hash::make($request['password'])]);
 
             // 成功時用
             return redirect()->route('accounts.create',
                 ['success' => $request['name'] . 'を登録しました']);
-        }
+        }*/
+
+        $user = User::create(
+            [
+                'name' => $request['name'],
+                'level' => 1,
+                'exp' => 0,
+                'life' => 5
+            ]
+        );
+
+        return response()->json(['user_id' => $user->id]);
 
         // 失敗時用
-        return redirect()->route('accounts.create', ['error' => 'invalid']);
+        //return redirect()->route('accounts.create', ['error' => 'invalid']);
     }
 
     // アカウント作成画面表示処理

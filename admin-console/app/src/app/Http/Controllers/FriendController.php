@@ -12,15 +12,4 @@ class FriendController extends Controller
         $follows = followList::all();
         return view('follow/index', ['follows' => $follows]);
     }
-
-    // フォロー追加
-    /*public function addFollow(Request $request)
-    {
-        followList::create([
-            'user_id' => $request['id'],
-            'is_received' => 0
-        ]);
-
-        return redirect()->route('user.showPlayer');
-    }*/
 }

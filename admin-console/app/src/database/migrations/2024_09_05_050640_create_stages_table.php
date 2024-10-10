@@ -10,13 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('stages', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 128);   // nameカラム
-            $table->integer('raid_points');      // 貢献度
+            $table->integer('operate_time');
             $table->timestamps();
-
-            $table->unique('name'); // nameにユニーク制約設定
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('stages');
     }
 };

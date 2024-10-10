@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MailResource extends JsonResource
+class RaidResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,9 @@ class MailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'text' => $this->text,
-            'item_id' => $this->item_id,
-            'item_cnt' => $this->item_cnt,
+            'user_id' => $this->user_id,
+            'boss_id' => $this->boss_id,
+            'boss_hp' => $this->boss_hp,
             'created_at' => $this->created_at->format('Y/m/d H:i:s')
         ];
     }
