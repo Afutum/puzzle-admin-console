@@ -16,10 +16,8 @@ class RaidResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id,
             'boss_id' => $this->boss_id,
             'boss_hp' => $this->boss_hp,
-            'created_at' => $this->created_at->format('Y/m/d H:i:s')
         ];
     }
 }

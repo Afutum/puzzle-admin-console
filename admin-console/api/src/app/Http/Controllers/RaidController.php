@@ -32,6 +32,6 @@ class RaidController extends Controller
         $raid->boss_hp = $request->boss_hp;
         $raid->save();
 
-        return response()->json($raid);
+        return response()->json(RaidResource::make($raid));
     }
 }

@@ -1,5 +1,5 @@
 ### ユーザー情報取得
-GET http://localhost:8000/api/users/1
+GET http://localhost:8000/api/users/2
 Accept: application/json
 
 ### ユーザーリスト情報取得
@@ -12,19 +12,18 @@ Content-Type:application/json
 Accept: application/json
 
 {
-    "name": "l",
-    "contribution": 0
+    "name": "5"
 }
 
 ###ユーザー更新
 POST http://localhost:8000/api/users/update
 Content-Type:application/json
 Accept: application/json
-Authorization: Bearer 2|zkUI4R32An6yN3UWgybXsk1NQuVFf5PMyo0HsNpK30d53620
+
 
 {
-    "user_id": 1,
-    "raid_points": 500
+    "user_id": 106,
+    "raid_points": 100
 }
 
 ### ユーザー追加
@@ -93,7 +92,7 @@ Accept: application/json
 }
 
 ### ユーザーステージ情報を取得
-GET http://localhost:8000/api/stages/index/1
+GET http://localhost:8000/api/stages/1
 Accept: application/json
 
 
@@ -105,7 +104,7 @@ Accept: application/json
 {
     "user_id": 1,
     "stage_id": 2,
-    "fastest_time": 12
+    "fastest_time": 11
 }
 
 ### レイドボス情報を取得
@@ -123,7 +122,7 @@ Accept: application/json
 
 {
     "id": 2,
-    "boss_hp": 400
+    "boss_hp": 300
 }
 
 ### Acceptヘッダーは、クライアントがJSONを受け付ける設定

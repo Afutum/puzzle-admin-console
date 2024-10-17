@@ -76,15 +76,15 @@ Route::middleware(NoCacheMiddleware::class)
     ->post('users/store', [UserController::class, 'store'])
     ->name('storeUser');
 
-// ユーザーステージ一覧
-Route::middleware(NoCacheMiddleware::class)
-    ->get('stages/index/{user_id}', [StageController::class, 'showStage'])
-    ->name('showStage');
-
 // ユーザーがステージクリアした
 Route::middleware(NoCacheMiddleware::class)
     ->post('stage/store', [StageController::class, 'store'])
     ->name('storeStage');
+
+// ユーザーステージ一覧
+Route::middleware(NoCacheMiddleware::class)
+    ->get('stages/{user_id}', [StageController::class, 'showStage'])
+    ->name('showStage');
 
 // レイドボス情報
 Route::middleware(NoCacheMiddleware::class)

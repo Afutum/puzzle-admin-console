@@ -51,7 +51,7 @@ class UserController extends Controller
     // ユーザーの情報を更新
     public function update(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail($request->user()->id);
         $user->raid_points += $request->raid_points;
         $user->save();
 
@@ -105,7 +105,7 @@ class UserController extends Controller
         $user = User::create(
             [
                 'name' => $request['name'],
-                'contribution' => 0
+                'raid_points' => 0
             ]
         );
 
