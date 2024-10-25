@@ -91,10 +91,13 @@ Accept: application/json
     "personal_item": 1
 }
 
+###ステージ情報取得
+GET http://localhost:8000/api/stages
+Accept: application/json
+
 ### ユーザーステージ情報を取得
 GET http://localhost:8000/api/stages/1
 Accept: application/json
-
 
 ### ユーザーステージクリア
 POST http://localhost:8000/api/stage/store

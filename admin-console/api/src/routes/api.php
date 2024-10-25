@@ -76,9 +76,14 @@ Route::middleware(NoCacheMiddleware::class)
     ->post('users/store', [UserController::class, 'store'])
     ->name('storeUser');
 
+// ステージ情報取得
+Route::middleware(NoCacheMiddleware::class)
+    ->get('stages', [StageController::class, 'index'])
+    ->name('index');
+
 // ユーザーがステージクリアした
 Route::middleware(NoCacheMiddleware::class)
-    ->post('stage/store', [StageController::class, 'store'])
+    ->post('stages/store', [StageController::class, 'store'])
     ->name('storeStage');
 
 // ユーザーステージ一覧

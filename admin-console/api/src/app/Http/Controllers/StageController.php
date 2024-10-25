@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserStageResource;
+use App\Models\Stage;
 use App\Models\UserStage;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class StageController extends Controller
 {
+    public function index(Request $request)
+    {
+        $stage = Stage::All();
+        return response()->json($stage);
+    }
+
     public function showStage(Request $request)
     {
         $stages = UserStage::All()->where('user_id', '=', $request->user_id);
