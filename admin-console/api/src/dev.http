@@ -119,13 +119,15 @@ GET http://localhost:8000/api/users/showRaidPoints
 Accept: application/json
 
 ### レイドボス情報更新
-POST http://localhost:8000/api/raids/raidBossUpdate
+POST http://localhost:8000/api/raids/raidBossHpUpdate
 Content-Type:application/json
 Accept: application/json
 
 {
-    "id": 2,
-    "boss_hp": 300
+    "id": 11,
+    "user_id": 2,
+    "boss_id": 1,
+    "boss_hp": 0
 }
 
 ### Acceptヘッダーは、クライアントがJSONを受け付ける設定

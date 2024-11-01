@@ -98,5 +98,5 @@ Route::middleware(NoCacheMiddleware::class)
 
 // レイドボス情報更新
 Route::middleware(NoCacheMiddleware::class)
-    ->post('raids/raidBossUpdate', [RaidController::class, 'raidBossUpdate'])
-    ->name('raidBossUpdate');
+    ->post('raids/raidBossHpUpdate', [RaidController::class, 'raidBossHpUpdate'])
+    ->name('raidBossHpUpdate');
