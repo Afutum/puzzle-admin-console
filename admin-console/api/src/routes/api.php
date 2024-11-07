@@ -88,7 +88,7 @@ Route::middleware(NoCacheMiddleware::class)
 
 // ユーザーステージ一覧
 Route::middleware(NoCacheMiddleware::class)
-    ->get('stages/{user_id}', [StageController::class, 'showStage'])
+    ->get('stages/showStage/{user_id}', [StageController::class, 'showStage'])
     ->name('showStage');
 
 // レイドボス情報

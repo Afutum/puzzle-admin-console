@@ -96,7 +96,7 @@ GET http://localhost:8000/api/stages
 Accept: application/json
 
 ### ユーザーステージ情報を取得
-GET http://localhost:8000/api/stages/1
+GET http://localhost:8000/api/stages/showStage/1
 Accept: application/json
 
 ### ユーザーステージクリア
