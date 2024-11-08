@@ -20,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // ページの表示にBootstrapを使う宣言
-        Paginator::useBootstrapFive();
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
