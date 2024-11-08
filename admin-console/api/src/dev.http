@@ -1,5 +1,5 @@
 ### ユーザー情報取得
-GET https://4.215.232.76/api/users/2
+GET http://4.215.232.76/api/users/2
 Accept: application/json
 
 ### ユーザーリスト情報取得
